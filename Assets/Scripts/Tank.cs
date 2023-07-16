@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Tank : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	private static Tank _instance;
+	public static Tank instance;
+	private Transform _tr;
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void Awake()
+	{
+		_instance = this;
+		_tr = transform;
+
+	}
 }
+
+
