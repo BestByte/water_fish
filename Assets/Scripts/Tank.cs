@@ -10,6 +10,13 @@ public class Tank : MonoBehaviour
 	public static Tank instance;
 	private Transform _tr;
 
+	/// <summary>
+	///  水箱的长宽高
+	/// </summary>
+	public float width;
+	public float height;
+	public float depth;
+
 
 	private void Awake()
 	{
