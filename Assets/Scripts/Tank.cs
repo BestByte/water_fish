@@ -11,7 +11,6 @@ public class Tank : MonoBehaviour
 	private Transform _tr;
 
 
-
 	private void Awake()
 	{
 		_instance = this;
