@@ -25,6 +25,7 @@ public class Tank : MonoBehaviour
 	private float _minDepthPos;
 	private float _maxDepthPos;
 
+
 	public float minWidthPos
 	{
 		get
