@@ -4,14 +4,18 @@ using UnityEngine;
 /// <summary>
 /// tank作为管理水箱的脚步
 /// </summary>
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+
 
 public class Tank : MonoBehaviour
 {
 	private static Tank _instance;
-	public static Tank instance;
+	public static Tank instance
+	{
+		get
+		{
+			return _instance;
+		}
+	}
 	private Transform _tr;
 
 	public float width;
@@ -24,7 +28,6 @@ public class Tank : MonoBehaviour
 	private float _maxHeightPos;
 	private float _minDepthPos;
 	private float _maxDepthPos;
-
 
 	public float minWidthPos
 	{
@@ -68,7 +71,6 @@ public class Tank : MonoBehaviour
 			return _maxDepthPos;
 		}
 	}
-
 
 	private void Awake()
 	{
@@ -167,3 +169,4 @@ public class Tank : MonoBehaviour
 		}
 	}
 }
+
