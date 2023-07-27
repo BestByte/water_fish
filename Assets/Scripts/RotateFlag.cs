@@ -60,5 +60,6 @@ public class RotateFlag
 			_rotating = false;
 		}
 	}
+	
 
 }
