@@ -22,6 +22,10 @@ public class FishAI : MonoBehaviour
 	[SerializeField]
 	private SpeedFlag speed;
 
+	[SerializeField]
+	private RotateFlag rota;
+	// ...
+	
 
 	void Start()
 	{
@@ -29,6 +33,8 @@ public class FishAI : MonoBehaviour
 		speed = new SpeedFlag(_tr);
 		RandomBorn();
 		GetTarget();
+
+		rota = new RotateFlag(_tr);
 	}
 
 	private void RandomBorn()
