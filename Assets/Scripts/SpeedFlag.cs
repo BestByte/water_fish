@@ -4,6 +4,9 @@ using UnityEngine;
 
 
 using System;
+/// <summary>
+/// 专注于速度
+/// </summary>
 [Serializable]
 public class SpeedFlag
 {
