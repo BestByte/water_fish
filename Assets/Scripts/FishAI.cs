@@ -53,6 +53,7 @@ public class FishAI : MonoBehaviour
 	}
 	private void GetTarget()
 	{
+		move.Move(tarDir, GetTarget);
 
 		float turnSpeed = Random.Range(2f, 5f);
 		rota.SetRotate(turnSpeed, tarDir);
@@ -89,17 +90,10 @@ public class FishAI : MonoBehaviour
 		float deltaTime = Time.deltaTime;
 		speed.Update(deltaTime); // Ã¿Ö¡¸üÐÂ
 		rota.Update(deltaTime);
+		move.SetSpeed(speed.curSpeed);
+		move.Update(deltaTime);
 
-		Vector3 pos = _tr.position + tarDir * speed.curSpeed * Time.deltaTime;
-		if (!Tank.instance.InTank(pos))
-		{
-			GetTarget();
-		}
-		else
-		{
-			
-			_tr.position = pos;
-		}
+		
 	}
 
 }
