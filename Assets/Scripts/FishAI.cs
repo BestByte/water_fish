@@ -25,7 +25,11 @@ public class FishAI : MonoBehaviour
 	[SerializeField]
 	private RotateFlag rota;
 	// ...
-	
+
+	[SerializeField]
+	private MoveFlag move;
+	// ...
+
 
 	void Start()
 	{
@@ -35,6 +39,11 @@ public class FishAI : MonoBehaviour
 		GetTarget();
 
 		rota = new RotateFlag(_tr);
+
+		
+		// ...
+		move = new MoveFlag(_tr);
+		// ...
 	}
 
 	private void RandomBorn()
