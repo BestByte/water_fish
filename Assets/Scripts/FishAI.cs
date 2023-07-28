@@ -29,6 +29,20 @@ public class FishAI : MonoBehaviour
 	[SerializeField]
 	private MoveFlag move;
 	// ...
+	[SerializeField]
+	private AnimFlag anim;
+	
+	void Update()
+	{
+
+		float deltaTime = Time.deltaTime;
+		speed.Update(deltaTime); // 每帧更新
+		rota.Update(deltaTime);
+		move.SetSpeed(speed.curSpeed);
+		move.Update(deltaTime);
+		anim.SetSpeed(speed.curSpeed);
+		anim.Update(deltaTime);
+	}
 
 
 	void Start()
@@ -44,6 +58,8 @@ public class FishAI : MonoBehaviour
 		// ...
 		move = new MoveFlag(_tr);
 		// ...
+
+		anim = new AnimFlag(_tr);
 	}
 
 	private void RandomBorn()
@@ -84,16 +100,5 @@ public class FishAI : MonoBehaviour
 		speed.StartVarSpeed(tarDistance, tarTime, GetTarget);
 		curTime = 0f;
 	}
-	void Update()
-	{
-
-		float deltaTime = Time.deltaTime;
-		speed.Update(deltaTime); // 每帧更新
-		rota.Update(deltaTime);
-		move.SetSpeed(speed.curSpeed);
-		move.Update(deltaTime);
-
-		
-	}
-
+	
 }
