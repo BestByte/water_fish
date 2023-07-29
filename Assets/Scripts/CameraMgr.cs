@@ -6,6 +6,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 public class CameraMgr : MonoBehaviour
 {
 
@@ -28,6 +34,14 @@ public class CameraMgr : MonoBehaviour
 			{
 				FishAI ai = hitInfo.transform.GetComponent<FishAI>();
 				ai.Escape();
+			}
+			else
+			{
+				// ιʳ
+				float randomZ = Tank.instance.RandomZ() + Tank.instance.transform.position.z - cam.transform.position.z;
+				Vector3 worldPos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, randomZ));
+				FoodMgr.instance.GenFood(worldPos);
+
 			}
 		}
 	}
