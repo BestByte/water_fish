@@ -13,6 +13,10 @@ public class SpeedFlag
 	private Transform _tr;
 
 	[SerializeField]
+	private bool _isToTarSpeed = false; // 当前是否正在向目标速度改变
+
+
+	[SerializeField]
 	private float _curSpeed;    // 当前速度
 	[SerializeField]
 	private float _usedTime;    // 已使用的时间
@@ -78,6 +82,12 @@ public class SpeedFlag
 	}
 	public void StartVarSpeed(float distance, float totalTime, Action callback)
 	{
+		
+			_varSpeeding = true;
+			_isToTarSpeed = false; // 新加
+			
+    
+
 		_varSpeeding = true;
 		_callback = callback;
 		_totalTime = totalTime;
