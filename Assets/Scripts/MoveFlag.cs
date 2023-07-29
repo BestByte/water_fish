@@ -12,6 +12,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
 [System.Serializable]
 public class MoveFlag
 {
@@ -28,6 +33,11 @@ public class MoveFlag
 	private bool _movingByTime = false;
 	[SerializeField]
 	private float _moveTime = 0f;
+	[SerializeField]
+	private bool _moveToDynamicTarget = false;
+
+	[SerializeField]
+	private Transform _dynamicDest;
 
 	private Action _callback;
 	public bool moving
@@ -61,6 +71,7 @@ public class MoveFlag
 	{
 		_moving = true;
 		_movingByTime = false;
+		_moveToDynamicTarget = false;
 		_dir = dir;
 		_callback = cb;
 	}
@@ -71,10 +82,19 @@ public class MoveFlag
 	{
 		_movingByTime = true;
 		_moving = false;
+		_moveToDynamicTarget = false;
 		_dir = dir;
 		_moveTime = time;
 		_callback = cb;
 
+	}
+	public void MoveToDynamicTarget(Transform tr, Action callback)
+	{
+		_movingByTime = false;
+		_moving = false;
+		_moveToDynamicTarget = true;
+		_dynamicDest = tr;
+		_callback = callback;
 	}
 	public void Update(float deltaTime)
 	{
@@ -96,6 +116,11 @@ public class MoveFlag
 
 			_MoveByTime(deltaTime);
 		}
+
+		if (_moveToDynamicTarget)
+		{
+			_MoveToDynamicTarget(deltaTime);
+		}
 	}
 	private void _MoveByTime(float deltaTime)
 	{
@@ -116,6 +141,24 @@ public class MoveFlag
 		{
 			_nowPos = pos;
 		}
+
+	}
+
+	private void _MoveToDynamicTarget(float deltaTime)
+	{
+		Vector3 dir = _dynamicDest.position - _nowPos;
+		float time = Vector3.Distance(_nowPos, _dynamicDest.position) / _speed;
+		if (time > deltaTime) // 需要的时间大于一个deltaTime
+		{
+			_nowPos = Vector3.Lerp(_nowPos, _dynamicDest.position, deltaTime / time);
+		}
+		else
+		{
+			_moveToDynamicTarget = false;
+			_dynamicDest = null;
+			_DoCallBack();
+		}
+
 	}
 	private void _DoCallBack()
 	{
