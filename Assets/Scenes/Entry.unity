@@ -293,12 +293,39 @@ MonoBehaviour:
     _decTime: 0
     _avgTime: 0
     _varSpeeding: 0
+    _isToTarSpeed: 0
     _speedUpProgress: 0
     _speedDownProgress: 0
     _accSpeed: 0
     _decSpeed: 0
     _maxSpeed: 0
     _minSpeed: 0
+  rota:
+    _tarDir: {x: 0, y: 0, z: 0}
+    _tarQuat: {x: 0, y: 0, z: 0, w: 0}
+  move:
+    _speed: 0
+    _dir: {x: 0, y: 0, z: 0}
+    _moving: 0
+    _movingByTime: 0
+    _moveTime: 0
+  anim:
+    _speed: 0
+  _curState: 0
+  _lastState: 0
+--- !u!135 &321394256
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321394250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &527297167
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +385,7 @@ GameObject:
   - component: {fileID: 1585198089}
   - component: {fileID: 1585198088}
   - component: {fileID: 1585198091}
+  - component: {fileID: 1585198092}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -441,6 +469,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61feea532d7dc424d9c27a03d213cbe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1585198092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585198087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7125babcec384149af0973a36bd7407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2025670939
