@@ -7,14 +7,13 @@ using System;
 /// <summary>
 /// 专注于速度
 /// </summary>
+using UnityEngine;
+using System.Collections;
+using System;
 [Serializable]
 public class SpeedFlag
 {
 	private Transform _tr;
-
-	[SerializeField]
-	private bool _isToTarSpeed = false; // 当前是否正在向目标速度改变
-
 
 	[SerializeField]
 	private float _curSpeed;    // 当前速度
@@ -30,6 +29,8 @@ public class SpeedFlag
 	private float _avgTime; // 匀速运动时间
 	[SerializeField]
 	private bool _varSpeeding = false; // 当前是否正在进行变速
+	[SerializeField]
+	private bool _isToTarSpeed = false; // 当前是否正在向目标速度改变
 
 	private Action _callback; // 完成时候的回调
 
@@ -82,13 +83,8 @@ public class SpeedFlag
 	}
 	public void StartVarSpeed(float distance, float totalTime, Action callback)
 	{
-		
-			_varSpeeding = true;
-			_isToTarSpeed = false; // 新加
-			
-    
-
 		_varSpeeding = true;
+		_isToTarSpeed = false;
 		_callback = callback;
 		_totalTime = totalTime;
 		_usedTime = 0f;
@@ -104,11 +100,27 @@ public class SpeedFlag
 		_decSpeed = (_maxSpeed - _minSpeed) / _decTime;
 	}
 
+	/// <summary>
+	/// 目标速度
+	/// </summary>
+	public void StartToTarSpeed(float tarSpeed, float time, Action cb = null)
+	{
+		_isToTarSpeed = true;
+		_varSpeeding = false;
+		_maxSpeed = tarSpeed;
+		_totalTime = time;
+		_callback = cb;
+	}
+
 	public void Update(float deltaTime)
 	{
 		if (_varSpeeding)
 		{
 			_varSpeed(deltaTime);
+		}
+		else if (_isToTarSpeed)  // 目标速度
+		{
+			_toTarSpeed(deltaTime);
 		}
 	}
 	private void _varSpeed(float deltaTime)
@@ -159,6 +171,27 @@ public class SpeedFlag
 			}
 		}
 	}
+
+	private void _toTarSpeed(float deltaTime)
+	{
+		if (Mathf.Abs(_curSpeed - _maxSpeed) < 1e-5)
+		{
+			_isToTarSpeed = false;
+			return;
+		}
+		if (_totalTime > deltaTime)
+		{
+			_curSpeed = Mathf.Lerp(_curSpeed, _maxSpeed, deltaTime / _totalTime);
+			_totalTime -= deltaTime;
+		}
+		else
+		{
+			_curSpeed = _maxSpeed;
+			_isToTarSpeed = false;
+			_DoCallback();
+		}
+
+	}
 	private void _DoCallback()
 	{
 		if (_callback != null)
@@ -169,3 +202,4 @@ public class SpeedFlag
 		}
 	}
 }
+
