@@ -37,6 +37,13 @@ public class FishAI : MonoBehaviour
 	public ActionState _curState;
 	public ActionState _lastState;
 
+	private void Swimming()
+	{
+		_lastState = _curState;
+		_curState = ActionState.Swimming;
+		
+    }
+
 	void Update()
 	{
 
