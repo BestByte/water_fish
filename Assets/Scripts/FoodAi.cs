@@ -6,6 +6,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 public class FoodAI : MonoBehaviour
 {
 	private Transform tr;
@@ -39,6 +43,8 @@ public class FoodAI : MonoBehaviour
 	public void DesFood()
 	{
 		active = false;
+		FoodMgr.instance.DesFood(this);
 		Destroy(this.gameObject);
 	}
 }
+
