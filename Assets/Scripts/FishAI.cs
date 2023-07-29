@@ -6,9 +6,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 public class FishAI : MonoBehaviour
 {
-	public enum ActionState { Swimming, Float, Escape }
+	public enum ActionState { Swimming, Float, Escape, Feed, FeedOver }
+
+	public enum FishEvent
+	{
+		Feed,
+		FoodDestroy,
+	}
 
 	private Transform _tr;
 	[SerializeField]
@@ -30,21 +40,35 @@ public class FishAI : MonoBehaviour
 	private MoveFlag move;
 	[SerializeField]
 	private AnimFlag anim;
+	[SerializeField]
+	private FeedFlag feed;
+
+	private FoodAI _foodTarget;
 
 
 	public ActionState _curState;
 	public ActionState _lastState;
 
+	public float findFoodRange = 20f;
+
 
 	void Start()
 	{
+		EventMgr<FishEvent>.instance.AddListener(FishEvent.Feed, OnFeed);
 		_tr = transform;
 		speed = new SpeedFlag(_tr);
 		rota = new RotateFlag(_tr);
 		move = new MoveFlag(_tr);
 		anim = new AnimFlag(_tr);
+		feed = new FeedFlag(_tr);
+		feed.feedDuration = 5f;
 		RandomBorn();
 		Swimming();
+	}
+
+	private void OnDestroy()
+	{
+		EventMgr<FishEvent>.instance.RemListener(FishEvent.Feed, OnFeed);
 	}
 
 	private void RandomBorn()
@@ -55,6 +79,7 @@ public class FishAI : MonoBehaviour
 	void Update()
 	{
 		float deltaTime = Time.deltaTime;
+		feed.Update(deltaTime);
 		speed.Update(deltaTime); // 每帧更新
 		rota.Update(deltaTime);
 		move.SetSpeed(speed.curSpeed);
@@ -195,4 +220,52 @@ public class FishAI : MonoBehaviour
 		rota.SetRotate(turnSpeed, tarDir);
 		move.Move(tarDir);
 	}
+
+	private void Feed()
+	{
+		_lastState = _curState;
+		_curState = ActionState.Feed;
+		feed.StartFeed(_foodTarget, FeedOver);
+		speed.StartSpeedUp(Random.Range(3f, 10f), Random.Range(6f, 10f));
+
+		float turnSpeed = Random.Range(4f, 10f);
+		rota.SetRotateToTarget(turnSpeed, _foodTarget.transform);
+		move.MoveToDynamicTarget(_foodTarget.transform, null);
+	}
+	private void FeedOver(bool getFood)
+	{
+		_lastState = _curState;
+		_curState = ActionState.FeedOver;
+		speed.StartSpeedDown(Random.Range(1f, 4f), Random.Range(1f, 2f), null);
+		float turnSpeed = Random.Range(4f, 10f);
+		tarDir = _tr.forward;
+		tarDir.Normalize();
+		rota.SetRotate(turnSpeed, tarDir);
+		move.Move(tarDir, StartAction);
+	}
+
+	private void OnFeed(object[] param)
+	{
+
+		if (feed.isHungry && !feed.feeding)
+		{
+			// 寻找距离最近的食物，并且冲过去
+			float dis;
+			FoodMgr.instance.Nearest(_tr.position, out _foodTarget, out dis);
+			if (_foodTarget != null)
+			{
+				if (dis <= findFoodRange)
+				{
+					Feed();
+
+				}
+				else
+				{
+					_foodTarget = null;
+				}
+			}
+		}
+	}
+
 }
+
