@@ -10,6 +10,9 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine;
+using System.Collections;
+using System;
 [Serializable]
 public class SpeedFlag
 {
@@ -31,6 +34,10 @@ public class SpeedFlag
 	private bool _varSpeeding = false; // 当前是否正在进行变速
 	[SerializeField]
 	private bool _isToTarSpeed = false; // 当前是否正在向目标速度改变
+	[SerializeField]
+	private bool _isSpeedUp = false;
+	[SerializeField]
+	private bool _isSpeedDown = false;
 
 	private Action _callback; // 完成时候的回调
 
@@ -85,6 +92,8 @@ public class SpeedFlag
 	{
 		_varSpeeding = true;
 		_isToTarSpeed = false;
+		_isSpeedUp = false;
+		_isSpeedDown = false;
 		_callback = callback;
 		_totalTime = totalTime;
 		_usedTime = 0f;
@@ -107,9 +116,35 @@ public class SpeedFlag
 	{
 		_isToTarSpeed = true;
 		_varSpeeding = false;
+		_isSpeedUp = false;
+		_isSpeedDown = false;
 		_maxSpeed = tarSpeed;
 		_totalTime = time;
 		_callback = cb;
+	}
+
+
+	public void StartSpeedUp(float accSpeed, float maxSpeed, Action cb = null)
+	{
+		_isSpeedUp = true;
+		_varSpeeding = false;
+		_isSpeedDown = false;
+		_isToTarSpeed = false;
+		_accSpeed = accSpeed;
+		_maxSpeed = maxSpeed;
+		_callback = cb;
+
+	}
+	public void StartSpeedDown(float decSpeed, float minSpeed, Action cb = null)
+	{
+		_isSpeedUp = false;
+		_varSpeeding = false;
+		_isSpeedDown = true;
+		_isToTarSpeed = false;
+		_decSpeed = decSpeed;
+		_minSpeed = minSpeed;
+		_callback = cb;
+
 	}
 
 	public void Update(float deltaTime)
@@ -121,6 +156,14 @@ public class SpeedFlag
 		else if (_isToTarSpeed)  // 目标速度
 		{
 			_toTarSpeed(deltaTime);
+		}
+		else if (_isSpeedUp)
+		{
+			_speedUp(deltaTime);
+		}
+		else if (_isSpeedDown)
+		{
+			_speedDown(deltaTime);
 		}
 	}
 	private void _varSpeed(float deltaTime)
@@ -188,6 +231,34 @@ public class SpeedFlag
 		{
 			_curSpeed = _maxSpeed;
 			_isToTarSpeed = false;
+			_DoCallback();
+		}
+
+	}
+	private void _speedUp(float deltaTime)
+	{
+		if (_curSpeed < _maxSpeed)
+		{
+			_curSpeed += _accSpeed * deltaTime;
+		}
+		else
+		{
+			_curSpeed = _maxSpeed;
+			_isSpeedUp = false;
+			_DoCallback();
+		}
+
+	}
+	private void _speedDown(float deltaTime)
+	{
+		if (_curSpeed > _minSpeed)
+		{
+			_curSpeed -= _decSpeed * deltaTime;
+		}
+		else
+		{
+			_curSpeed = _minSpeed;
+			_isSpeedDown = false;
 			_DoCallback();
 		}
 
