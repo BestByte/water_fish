@@ -31,7 +31,12 @@ public class FishAI : MonoBehaviour
 	// ...
 	[SerializeField]
 	private AnimFlag anim;
-	
+
+
+	public enum ActionState { Swimming, Float, Escape }
+	public ActionState _curState;
+	public ActionState _lastState;
+
 	void Update()
 	{
 
