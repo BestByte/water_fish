@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+/// <summary>
+/// ×ªÏò¿ØÖÆÆ÷
+/// </summary>
 [System.Serializable]
 public class RotateFlag
 {
 	private Transform _tr;
+
 	private bool _rotating = false;
 	private bool _rotatToTarget = false;
 	private float _rotaSpeed;

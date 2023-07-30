@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 using System;
 /// <summary>
 /// 移动相关的控制
 /// </summary>
-
-
 [System.Serializable]
 public class MoveFlag
 {
