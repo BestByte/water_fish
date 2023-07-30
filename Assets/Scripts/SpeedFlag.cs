@@ -84,6 +84,12 @@ public class SpeedFlag
 	{
 		_minSpeed = minSpeed;
 	}
+	/// <summary>
+	/// 设置变速方法
+	/// </summary>
+	/// <param name="distance"></param>
+	/// <param name="totalTime"></param>
+	/// <param name="callback">回调</param>
 	public void StartVarSpeed(float distance, float totalTime, Action callback)
 	{
 		_varSpeeding = true;
@@ -108,6 +114,9 @@ public class SpeedFlag
 	/// <summary>
 	/// 目标速度
 	/// </summary>
+	/// <param name="tarSpeed"></param>
+	/// <param name="time"></param>
+	/// <param name="cb"></param>
 	public void StartToTarSpeed(float tarSpeed, float time, Action cb = null)
 	{
 		_isToTarSpeed = true;
