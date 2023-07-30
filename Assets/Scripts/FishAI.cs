@@ -77,6 +77,7 @@ public class FishAI : MonoBehaviour
 
 	void Start()
 	{
+		//喂食事件的监听
 		EventMgr<FishEvent>.instance.AddListener(FishEvent.Feed, OnFeed);
 		//获得transform的位置
 		_tr = transform;

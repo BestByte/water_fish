@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
-
+/// <summary>
+/// Óã³ÔÊ³µÄÂß¼­
+/// </summary>
 public class FeedFlag
 {
 	private Transform _tr;
