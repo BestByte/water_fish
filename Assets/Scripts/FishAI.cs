@@ -10,8 +10,13 @@ using UnityEngine;
 /// </summary>
 public class FishAI : MonoBehaviour
 {
+	/// <summary>
+	/// ¶¨Òå×´Ì¬
+	/// </summary>
 	public enum ActionState { Swimming, Float, Escape, Feed, FeedOver }
-
+	/// <summary>
+	/// ÓãµÄ×´Ì¬
+	/// </summary>
 	public enum FishEvent
 	{
 		Feed,
