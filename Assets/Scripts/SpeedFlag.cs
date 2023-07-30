@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 /// <summary>
 /// 专注于速度
+/// 速度控制器
 /// </summary>
 
 [Serializable]

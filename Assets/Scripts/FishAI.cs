@@ -47,7 +47,9 @@ public class FishAI : MonoBehaviour
 	/// </summary>
 	[SerializeField]
 	private float curTime;
-
+	/// <summary>
+	/// speedflagµÄ³õÊ¼»¯
+	/// </summary>
 	[SerializeField]
 	private SpeedFlag speed;
 	[SerializeField]
