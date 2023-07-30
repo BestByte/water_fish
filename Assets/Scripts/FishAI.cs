@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+/// <summary>
+/// 鱼能够游动起来
+/// 鱼需要有一个出生位置
+/// 出生位置要在鱼缸里面
+/// update方法中，更新鱼的位置，让鱼游到目标位置
+/// </summary>
 public class FishAI : MonoBehaviour
 {
 	public enum ActionState { Swimming, Float, Escape, Feed, FeedOver }
@@ -19,14 +17,27 @@ public class FishAI : MonoBehaviour
 		Feed,
 		FoodDestroy,
 	}
-
+	/// <summary>
+	/// 鱼的transform的引用
+	/// </summary>
 	private Transform _tr;
+
+	/// <summary>
+	/// 目标位置
+	/// </summary>
 	[SerializeField]
 	private Vector3 tarPos;
+	/// <summary>
+	/// 目标方向
+	/// </summary>
 	[SerializeField]
 	private Vector3 tarDir;
+	/// <summary>
+	/// 目标速度
+	/// </summary>
 	[SerializeField]
 	private float tarSpeed;
+
 	[SerializeField]
 	private float tarTime;
 	[SerializeField]
@@ -55,6 +66,7 @@ public class FishAI : MonoBehaviour
 	void Start()
 	{
 		EventMgr<FishEvent>.instance.AddListener(FishEvent.Feed, OnFeed);
+		//获得transform的位置
 		_tr = transform;
 		speed = new SpeedFlag(_tr);
 		rota = new RotateFlag(_tr);
@@ -70,7 +82,9 @@ public class FishAI : MonoBehaviour
 	{
 		EventMgr<FishEvent>.instance.RemListener(FishEvent.Feed, OnFeed);
 	}
-
+	/// <summary>
+	/// 随机出生的位置，将AI的位置，随机到鱼缸内的一个点
+	/// </summary>
 	private void RandomBorn()
 	{
 		_tr.position = new Vector3(Tank.instance.RandomX(), Tank.instance.RandomY(), Tank.instance.RandomZ());
