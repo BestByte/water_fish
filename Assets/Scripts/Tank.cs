@@ -14,6 +14,9 @@ public class Tank : MonoBehaviour
 			return _instance;
 		}
 	}
+	/// <summary>
+	/// 水箱的位置，是鱼缸的中心
+	/// </summary>
 	private Transform _tr;
 
 	/// <summary>
@@ -72,7 +75,9 @@ public class Tank : MonoBehaviour
 			return _maxDepthPos;
 		}
 	}
-
+	/// <summary>
+	/// 计算边界的时候，使用水箱长宽高的一半
+	/// </summary>
 	private void Awake()
 	{
 		_instance = this;
