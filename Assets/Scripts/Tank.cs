@@ -106,6 +106,12 @@ public class Tank : MonoBehaviour
 		return Random.Range(_minDepthPos, _maxDepthPos);
 
 	}
+	/// <summary>
+	/// 鱼游动的范围只在鱼缸内
+	/// 当 xyz小于最小值或大于最大值的时候，都不在鱼缸内
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <returns></returns>
 	public bool InTank(Vector3 pos)
 	{
 		if (pos.x < _minWidthPos || pos.x > _maxWidthPos)
