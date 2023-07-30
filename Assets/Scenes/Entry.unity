@@ -294,6 +294,8 @@ MonoBehaviour:
     _avgTime: 0
     _varSpeeding: 0
     _isToTarSpeed: 0
+    _isSpeedUp: 0
+    _isSpeedDown: 0
     _speedUpProgress: 0
     _speedDownProgress: 0
     _accSpeed: 0
@@ -303,16 +305,20 @@ MonoBehaviour:
   rota:
     _tarDir: {x: 0, y: 0, z: 0}
     _tarQuat: {x: 0, y: 0, z: 0, w: 0}
+    _tarTrans: {fileID: 0}
   move:
     _speed: 0
     _dir: {x: 0, y: 0, z: 0}
     _moving: 0
     _movingByTime: 0
     _moveTime: 0
+    _moveToDynamicTarget: 0
+    _dynamicDest: {fileID: 0}
   anim:
     _speed: 0
   _curState: 0
   _lastState: 0
+  findFoodRange: 20
 --- !u!135 &321394256
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -587,6 +593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2029934629}
+  - component: {fileID: 2029934630}
   m_Layer: 0
   m_Name: FoodMgr
   m_TagString: Untagged
@@ -609,3 +616,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2029934630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029934628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b065dc1c73275440872d8e3cd78985e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodGo: {fileID: 4061793163271144017, guid: 7b97970b991b5284e9c7fbf12c4850bd, type: 3}
+  downSpeed: 5
+  foodList: []

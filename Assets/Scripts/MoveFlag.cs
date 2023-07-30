@@ -7,15 +7,7 @@ using System;
 /// <summary>
 /// 移动相关的控制
 /// </summary>
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
 
 [System.Serializable]
 public class MoveFlag
