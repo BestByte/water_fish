@@ -4,8 +4,6 @@ using UnityEngine;
 /// <summary>
 /// tank作为管理水箱的脚步
 /// </summary>
-
-
 public class Tank : MonoBehaviour
 {
 	private static Tank _instance;
@@ -18,6 +16,9 @@ public class Tank : MonoBehaviour
 	}
 	private Transform _tr;
 
+	/// <summary>
+	///水箱的长宽高
+	/// </summary>
 	public float width;
 	public float height;
 	public float depth;
@@ -145,7 +146,9 @@ public class Tank : MonoBehaviour
 		}
 		return pos;
 	}
-
+	/// <summary>
+	/// 水箱的Gizmos绘制线框立方体
+	/// </summary>
 	private void OnDrawGizmos()
 	{
 		if (this.enabled)
