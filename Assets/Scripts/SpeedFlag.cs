@@ -1,21 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 using System;
 /// <summary>
 /// 专注于速度
 /// </summary>
-using UnityEngine;
-using System.Collections;
-using System;
-using UnityEngine;
-using System.Collections;
-using System;
+
 [Serializable]
 public class SpeedFlag
 {
+	/// <summary>
+	/// 拿到transform的引用
+	/// </summary>
 	private Transform _tr;
 
 	[SerializeField]
