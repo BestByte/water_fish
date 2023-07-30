@@ -572,7 +572,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 661835227}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1975647930}
+        m_TargetAssemblyTypeName: StartSceneUI, Assembly-CSharp
+        m_MethodName: NewGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &661835227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -918,7 +930,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1047248977}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1975647930}
+        m_TargetAssemblyTypeName: StartSceneUI, Assembly-CSharp
+        m_MethodName: OldGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1047248977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6092,7 +6116,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1547225194}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1975647930}
+        m_TargetAssemblyTypeName: StartSceneUI, Assembly-CSharp
+        m_MethodName: OnCloseButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1547225194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6140,6 +6176,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1975647928}
+  - component: {fileID: 1975647929}
+  - component: {fileID: 1975647930}
   m_Layer: 0
   m_Name: Script
   m_TagString: Untagged
@@ -6162,3 +6200,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1975647929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975647927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72add66df8b155649a225ee1a56b6fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmAudioSource: {fileID: 0}
+  seaWaveClip: {fileID: 0}
+  goldClip: {fileID: 0}
+  rewardClip: {fileID: 0}
+  fireClip: {fileID: 0}
+  changeClip: {fileID: 0}
+  lvUpClip: {fileID: 0}
+--- !u!114 &1975647930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975647927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c87815836d7bf42ae5a3272f48fb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
