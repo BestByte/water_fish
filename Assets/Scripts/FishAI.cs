@@ -37,9 +37,14 @@ public class FishAI : MonoBehaviour
 	/// </summary>
 	[SerializeField]
 	private float tarSpeed;
-
+	/// <summary>
+	/// 移动的目标时间
+	/// </summary>
 	[SerializeField]
 	private float tarTime;
+	/// <summary>
+	/// 当前的运行时间
+	/// </summary>
 	[SerializeField]
 	private float curTime;
 
