@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+/// <summary>
+/// ¶¯»­¿ØÖÆÆ÷
+/// </summary>
 [System.Serializable]
 public class AnimFlag
 {
