@@ -90,17 +90,28 @@ public class Tank : MonoBehaviour
 		_minDepthPos = _tr.position.z - depth * 0.5f;
 		_maxDepthPos = _tr.position.z + depth * 0.5f;
 	}
-
+	/// <summary>
+	/// 鱼的出生点为随机位置
+	/// </summary>
+	/// <returns></returns>
 	public float RandomX()
 	{
 		return Random.Range(_minWidthPos, _maxWidthPos);
 
 	}
+	/// <summary>
+	/// 鱼的出生点为随机位置
+	/// </summary>
+	/// <returns></returns>
 	public float RandomY()
 	{
 		return Random.Range(_minHeightPos, _maxHeightPos);
 
 	}
+	/// <summary>
+	/// 鱼的出生点为随机位置
+	/// </summary>
+	/// <returns></returns>
 	public float RandomZ()
 	{
 		return Random.Range(_minDepthPos, _maxDepthPos);
@@ -128,6 +139,12 @@ public class Tank : MonoBehaviour
 		}
 		return true;
 	}
+	/// <summary>
+	/// 当xyz小于最小值的时候，就设置xyz为最小值
+	/// 当xyz大于最大值的时候，就设置为最大值
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <returns></returns>
 	public Vector3 InTankPos(Vector3 pos)
 	{
 		if (pos.x < _minWidthPos)
