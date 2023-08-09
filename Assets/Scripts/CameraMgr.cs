@@ -25,6 +25,7 @@ public class CameraMgr : MonoBehaviour
 			{
 				FishAI ai = hitInfo.transform.GetComponent<FishAI>();
 				ai.Escape();
+			
 			}
 			else
 			{
